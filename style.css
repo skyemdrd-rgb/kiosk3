@@ -1,0 +1,395 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* SCREENS */
+.screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+/* BACKGROUND IMAGES */
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* HOTSPOTS (INVISIBLE BUTTONS) */
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+}
+
+/* =========================
+   HOME PAGE HOTSPOTS
+   ========================= */
+
+/* adjust based on your image */
+.home {
+  left: 0%;
+  width: 21.67%;
+  height: 23.67%;
+  bottom: 0;
+}
+
+.guide {
+  left: 22.3%;
+  width: 25.32%;
+  height: 23.67%;
+  bottom: 0;
+}
+
+.about {
+  left: 48.2%;
+  width: 24.32%;
+  height: 23.67%;
+  bottom: 0;
+}
+
+/* =========================
+   GUIDE PAGE HOTSPOTS
+   ========================= */
+
+/* LEFT GRID */
+.clinic {
+  top: 12%;
+  left: 6%;
+  width: 31%;
+  height: 22%;
+}
+
+.chaplain {
+  top: 12%;
+  left: 42%;
+  width: 30%;
+  height: 22%;
+}
+
+.admin {
+  top: 40%;
+  left: 6%;
+  width: 31%;
+  height: 18%;
+}
+
+.resto {
+  top: 40%;
+  left: 40.5%;
+  width: 32%;
+  height: 18%;
+}
+
+.dept {
+  top: 65.7%;
+  left: 6%;
+  width: 31.5%;
+  height: 21.2%;
+}
+
+.atm {
+  top: 65.5%;
+  left: 40.5%;
+  width: 32%;
+  height: 22%;
+}
+
+/* RIGHT SIDE BUTTONS */
+.aboutSide {
+  top: 6%;
+  right: 0%;
+  width: 11.5%;
+  height: 28.33%;
+}
+
+.guideSide {
+  top: 36%;
+  right: 0%;
+  width: 11.5%;
+  height: 28.33%;
+}
+
+.homeSide {
+  top: 65.66%;
+  right: 0%;
+  width: 11.5%;
+  height: 28.33%;
+}
+
+/* =========================
+   ABOUT PAGE
+   ========================= */
+
+/* full screen tap to go back */
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.hotspot {
+  background: rgba(255, 0, 0, 0.2);
+}
+
+/* =========================
+   DEBUG MODE (TURN ON IF NEEDED)
+   ========================= */
+
+/*
+.hotspot {
+  background: rgba(255, 0, 0, 0.2);
+}
+*/
+/* RESTAURANT BACK BUTTON */
+.backResto {
+  position: absolute;
+  bottom: 5%;
+  right: 3%;
+  width: 10%;
+  height: 15%;
+  cursor: pointer;
+}
+
+/* RIGHT SIDE NUMBER BUTTONS */
+
+.hmo1btn {
+  top: 26.5%;
+  right: 0%;
+  width: 7%;
+  height: 11%;
+}
+
+.hmo2btn {
+  top: 39%;
+  right: 0%;
+  width: 7%;
+  height: 11%;
+}
+
+.hmo3btn {
+  top: 51.5%;
+  right: 0%;
+  width: 7%;
+  height: 11%;
+}
+
+.hmo4btn {
+  top: 64%;
+  right: 0%;
+  width: 7%;
+  height: 11%;
+}
+
+/* BACK HOME BUTTON */
+
+.backHome {
+  bottom: 7%;
+  right: 0%;
+  width: 10.5%;
+  height: 16%;
+}
+
+/* DEPARTMENT BACK BUTTON */
+.backDept {
+  bottom: 0%;
+  right: 0%;
+  width: 6%;
+  height: 10%;
+}
+
+/* OPTIONAL HOTSPOTS (approximate positions) */
+
+/* TOP ROW */
+.cancer {
+  top: 25%;
+  left: 3%;
+  width: 22%;
+  height: 20%;
+}
+
+.cardio {
+  top: 25%;
+  left: 26%;
+  width: 22%;
+  height: 20%;
+}
+
+.eye {
+  top: 25%;
+  left: 49%;
+  width: 22%;
+  height: 20%;
+}
+
+.hearing {
+  top: 25%;
+  left: 72%;
+  width: 22%;
+  height: 20%;
+}
+
+/* BOTTOM ROW */
+.hemo {
+  top: 55%;
+  left: 3%;
+  width: 22%;
+  height: 20%;
+}
+
+.nuclear {
+  top: 55%;
+  left: 28%;
+  width: 20%;
+  height: 20%;
+}
+
+.rehab {
+  top: 55%;
+  left: 53%;
+  width: 18%;
+  height: 20%;
+}
+
+.wound {
+  top: 55%;
+  left: 74%;
+  width: 22%;
+  height: 20%;
+}
+
+/* ASIAN LIFE BUTTON (on HMO page 2) */
+.asianlife {
+  top: 40%;
+  left: 67%;
+  width: 19%;
+  height: 20%;
+}
+
+/* BACK BUTTON (inside asian life page) */
+.backAsian {
+  bottom: 2%;
+  right: 0%;
+  width: 10%;
+  height: 15%;
+}
+
+/* AMAPHIL BUTTON (on HMO page 1) */
+.amaphil {
+  top: 12%;
+  left: 46.5%;
+  width: 18%;
+  height: 20%;
+}
+
+/* BACK BUTTON (inside amaphil page) */
+.backAmaphil {
+  bottom: 2%;
+  right: 0%;
+  width: 10%;
+  height: 15%;
+}
+
+/* BENLIFE BUTTON (HMO PAGE 1) */
+.benlife {
+  top: 40%;
+  left: 5%;
+  width: 16%;
+  height: 20%;
+}
+
+/* BACK BUTTON (inside benlife page) */
+.backBenlife {
+  bottom: 2%;
+  right: 0%;
+  width: 10%;
+  height: 15%;
+}
+
+/* CAREHEALTH BUTTON (HMO PAGE 2) */
+.carehealth {
+  top: 70%;
+  left: 48%;
+  width: 22%;
+  height: 18%;
+}
+
+/* BACK BUTTON (inside carehealth page) */
+.backCarehealth {
+  bottom: 2%;
+  right: 0%;
+  width: 10%;
+  height: 15%;
+}
+
+/* CARITAS BUTTON (HMO PAGE 2) */
+.caritas {
+  top: 70%;
+  left: 70%;
+  width: 22%;
+  height: 18%;
+}
+
+/* BACK BUTTON (inside caritas page) */
+.backCaritas {
+  bottom: 2%;
+  right: 0%;
+  width: 10%;
+  height: 15%;
+}
+/* VIDEO FULLSCREEN */
+.video-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* SLIDER */
+.slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* EACH IMAGE */
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+/* BACK BUTTON */
+.backChaplain {
+  bottom: 5%;
+  right: 3%;
+  width: 10%;
+  height: 15%;
+}
