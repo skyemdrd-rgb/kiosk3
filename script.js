@@ -1,142 +1,83 @@
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach(s => {
     s.classList.remove("active");
+
+    // pause videos
+    const v = s.querySelector("video");
+    if (v) v.pause();
   });
 
-  document.getElementById(id).classList.add("active");
+  const target = document.getElementById(id);
+  if (!target) return;
 
-  localStorage.setItem("currentScreen", id);
+  target.classList.add("active");
+
+  // play video if exists
+  const vid = target.querySelector("video");
+  if (vid) {
+    vid.currentTime = 0;
+    vid.play().catch(() => {});
+  }
+
+  resetIdle();
 }
 
-/* NAVIGATION */
-function goHome() { showScreen("homeScreen"); }
-function goGuide() { showScreen("guideScreen"); }
-function goAbout() { showScreen("aboutScreen"); }
-function goResto() { showScreen("restoScreen"); }
+/* NAV */
+const goHome = () => showScreen("homeScreen");
+const goGuide = () => showScreen("guideScreen");
+const goAbout = () => showScreen("aboutScreen");
+const goResto = () => showScreen("restoScreen");
+const goDept = () => showScreen("deptScreen");
 
-/* HMO */
-function showHMO(id) { showScreen(id); }
-
-/* REMEMBER LAST SCREEN */
-window.onload = function () {
-  const saved = localStorage.getItem("currentScreen");
-  if (saved) {
-    showScreen(saved);
-  } else {
-    showScreen("homeScreen");
-  }
+/* START ALWAYS */
+window.onload = () => {
+  showScreen("startScreen");
 };
 
-function goDept() {
-  showScreen("deptScreen");
+/* IDLE RESET */
+let idleTimer;
+
+function resetIdle() {
+  clearTimeout(idleTimer);
+
+  idleTimer = setTimeout(() => {
+    showScreen("startScreen");
+  }, 30000);
 }
 
-function goAsianLife() {
-  showScreen("asianlifeScreen");
-}
+document.addEventListener("click", resetIdle);
+document.addEventListener("touchstart", resetIdle);
 
-function goAmaphil() {
-  showScreen("amaphilScreen");
-}
-
-function goBenlife() {
-  showScreen("benlifeScreen");
-}
-
-function goCarehealth() {
-  showScreen("carehealthScreen");
-}  
-
-function goCaritas() {
-  showScreen("caritasScreen");
-}
-
-function playHemoVideo() {
-  showScreen("hemoVideoScreen");
-
-  const video = document.getElementById("hemoVideo");
-  video.currentTime = 0;
-  video.play();
-}
-
-function backToDept() {
-  const video = document.getElementById("hemoVideo");
-  video.pause();
-
-  showScreen("deptScreen");
-}
-
-function playCancerVideo() {
-  showScreen("cancerVideoScreen");
-
-  const video = document.getElementById("cancerVideo");
-  video.currentTime = 0;
-  video.play();
-}
-
-function backFromCancer() {
-  const video = document.getElementById("cancerVideo");
-  video.pause();
-
-  showScreen("deptScreen");
-}
-
-function playRehabVideo() {
-  showScreen("rehabVideoScreen");
-
-  const video = document.getElementById("rehabVideo");
-  video.currentTime = 0;
-  video.play();
-}
-
-function backFromRehab() {
-  const video = document.getElementById("rehabVideo");
-  video.pause();
-
-  showScreen("deptScreen");
-}
-
+/* SLIDER */
 let currentSlide = 0;
-let slides = [];
-
-function goChaplain() {
-  showScreen("chaplainScreen");
-
-  slides = document.querySelectorAll("#chaplainSlider .slide");
-  currentSlide = 0;
-  showSlide(currentSlide);
-}
 
 function showSlide(index) {
-  slides.forEach(s => s.classList.remove("active"));
-  slides[index].classList.add("active");
+  const slider = document.querySelector("#chaplainScreen .slider");
+  const slides = document.querySelectorAll("#chaplainScreen .slide");
+
+  const total = slides.length;
+
+  // loop properly
+  currentSlide = (index + total) % total;
+
+  // move EXACTLY 100% per slide
+  slider.style.transform = `translateX(-${currentSlide * 100}%)`;
 }
 
-/* SWIPE SUPPORT */
-let startX = 0;
+/* SWIPE ONLY ON SLIDER */
+const slider = document.querySelector(".slider");
 
-document.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
+if (slider) {
+  let startX = 0;
 
-document.addEventListener("touchend", e => {
-  let endX = e.changedTouches[0].clientX;
+  slider.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
 
-  if (Math.abs(startX - endX) > 50) {
-    if (startX > endX) {
-      nextSlide();
-    } else {
-      prevSlide();
-    }
-  }
-});
+  slider.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
 
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-}
-
-function prevSlide() {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(currentSlide);
+    if (endX - startX > 50) showSlide(currentSlide - 1);
+    if (startX - endX > 50) showSlide(currentSlide + 1);
+  });
 }

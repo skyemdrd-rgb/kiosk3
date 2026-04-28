@@ -1,4 +1,4 @@
-/* RESET */
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -13,19 +13,22 @@ html, body {
   user-select: none;
 }
 
-/* SCREENS */
+/* ================= SCREENS ================= */
 .screen {
   position: absolute;
   width: 100%;
   height: 100%;
-  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .screen.active {
-  display: block;
+  opacity: 1;
+  pointer-events: auto;
 }
 
-/* BACKGROUND IMAGES */
+/* ================= BACKGROUND IMAGES ================= */
 .background {
   position: absolute;
   width: 100%;
@@ -34,17 +37,32 @@ html, body {
   background-position: center;
 }
 
-/* HOTSPOTS (INVISIBLE BUTTONS) */
+/* ================= VIDEO BACKGROUND ================= */
+.video-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* IMPORTANT: allows clicks through video */
+  z-index: 0;
+}
+
+/* ================= HOTSPOTS ================= */
 .hotspot {
   position: absolute;
   cursor: pointer;
+  z-index: 1; /* always above video */
 }
 
-/* =========================
-   HOME PAGE HOTSPOTS
-   ========================= */
+/* ================= START SCREEN ================= */
+.startHotspot {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
-/* adjust based on your image */
+/* ================= HOME PAGE ================= */
 .home {
   left: 0%;
   width: 21.67%;
@@ -66,11 +84,7 @@ html, body {
   bottom: 0;
 }
 
-/* =========================
-   GUIDE PAGE HOTSPOTS
-   ========================= */
-
-/* LEFT GRID */
+/* ================= GUIDE PAGE ================= */
 .clinic {
   top: 12%;
   left: 6%;
@@ -113,7 +127,7 @@ html, body {
   height: 22%;
 }
 
-/* RIGHT SIDE BUTTONS */
+/* RIGHT SIDE */
 .aboutSide {
   top: 6%;
   right: 0%;
@@ -135,43 +149,24 @@ html, body {
   height: 28.33%;
 }
 
-/* =========================
-   ABOUT PAGE
-   ========================= */
-
-/* full screen tap to go back */
+/* ================= ABOUT ================= */
 .back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  left: 95%;
+  top: 90%;
+  width: 6%;
+  height: 8%;
   cursor: pointer;
 }
 
-.hotspot {
-  background: rgba(255, 0, 0, 0.2);
-}
-
-/* =========================
-   DEBUG MODE (TURN ON IF NEEDED)
-   ========================= */
-
-/*
-.hotspot {
-  background: rgba(255, 0, 0, 0.2);
-}
-*/
-/* RESTAURANT BACK BUTTON */
+/* ================= RESTAURANT ================= */
 .backResto {
-  position: absolute;
   bottom: 5%;
   right: 3%;
   width: 10%;
   height: 15%;
-  cursor: pointer;
 }
 
-/* RIGHT SIDE NUMBER BUTTONS */
-
+/* ================= HMO BUTTONS ================= */
 .hmo1btn {
   top: 26.5%;
   right: 0%;
@@ -200,8 +195,7 @@ html, body {
   height: 11%;
 }
 
-/* BACK HOME BUTTON */
-
+/* BACK HOME */
 .backHome {
   bottom: 7%;
   right: 0%;
@@ -209,7 +203,7 @@ html, body {
   height: 16%;
 }
 
-/* DEPARTMENT BACK BUTTON */
+/* DEPARTMENT BACK */
 .backDept {
   bottom: 0%;
   right: 0%;
@@ -217,9 +211,7 @@ html, body {
   height: 10%;
 }
 
-/* OPTIONAL HOTSPOTS (approximate positions) */
-
-/* TOP ROW */
+/* ================= DEPARTMENT HOTSPOTS ================= */
 .cancer {
   top: 25%;
   left: 3%;
@@ -248,7 +240,6 @@ html, body {
   height: 20%;
 }
 
-/* BOTTOM ROW */
 .hemo {
   top: 55%;
   left: 3%;
@@ -277,7 +268,7 @@ html, body {
   height: 20%;
 }
 
-/* ASIAN LIFE BUTTON (on HMO page 2) */
+/* ================= HMO SPECIFIC ================= */
 .asianlife {
   top: 40%;
   left: 67%;
@@ -285,7 +276,6 @@ html, body {
   height: 20%;
 }
 
-/* BACK BUTTON (inside asian life page) */
 .backAsian {
   bottom: 2%;
   right: 0%;
@@ -293,7 +283,6 @@ html, body {
   height: 15%;
 }
 
-/* AMAPHIL BUTTON (on HMO page 1) */
 .amaphil {
   top: 12%;
   left: 46.5%;
@@ -301,7 +290,6 @@ html, body {
   height: 20%;
 }
 
-/* BACK BUTTON (inside amaphil page) */
 .backAmaphil {
   bottom: 2%;
   right: 0%;
@@ -309,7 +297,6 @@ html, body {
   height: 15%;
 }
 
-/* BENLIFE BUTTON (HMO PAGE 1) */
 .benlife {
   top: 40%;
   left: 5%;
@@ -317,7 +304,6 @@ html, body {
   height: 20%;
 }
 
-/* BACK BUTTON (inside benlife page) */
 .backBenlife {
   bottom: 2%;
   right: 0%;
@@ -325,7 +311,6 @@ html, body {
   height: 15%;
 }
 
-/* CAREHEALTH BUTTON (HMO PAGE 2) */
 .carehealth {
   top: 70%;
   left: 48%;
@@ -333,7 +318,6 @@ html, body {
   height: 18%;
 }
 
-/* BACK BUTTON (inside carehealth page) */
 .backCarehealth {
   bottom: 2%;
   right: 0%;
@@ -341,7 +325,6 @@ html, body {
   height: 15%;
 }
 
-/* CARITAS BUTTON (HMO PAGE 2) */
 .caritas {
   top: 70%;
   left: 70%;
@@ -349,47 +332,57 @@ html, body {
   height: 18%;
 }
 
-/* BACK BUTTON (inside caritas page) */
 .backCaritas {
   bottom: 2%;
   right: 0%;
   width: 10%;
   height: 15%;
 }
-/* VIDEO FULLSCREEN */
-.video-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-/* SLIDER */
+/* ================= TRUE FULL SLIDE ================= */
 .slider {
   position: absolute;
-  width: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;        /* IMPORTANT: no 600% */
   height: 100%;
-  overflow: hidden;
+  display: flex;
+  transition: transform 0.4s ease;
 }
 
-/* EACH IMAGE */
 .slide {
-  position: absolute;
-  width: 100%;
+  width: 100%;        /* each slide = full screen */
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  flex-shrink: 0;     /* prevents shrinking */
 }
 
-.slide.active {
-  opacity: 1;
-}
-
-/* BACK BUTTON */
+/* CHAPLAIN BACK BUTTON */
 .backChaplain {
   bottom: 5%;
   right: 3%;
   width: 10%;
   height: 15%;
+}
+
+/* ================= DEBUG: SHOW HOTSPOTS ================= */
+.hotspot {
+  background: rgba(255, 0, 0, 0.3); /* red transparent */
+  border: 2px solid red;
+}
+
+/* LEFT BUTTON */
+.chaplainLeft {
+  top: 0;
+  left: 0;
+  width: 15%;
+  height: 100%;
+}
+
+/* RIGHT BUTTON */
+.chaplainRight {
+  top: 0;
+  right: 0;
+  width: 15%;
+  height: 100%;
 }

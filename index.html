@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Kiosk</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- ================= START SCREEN (VIDEO) ================= -->
+<div id="startScreen" class="screen active">
+
+  <video class="video-bg" autoplay muted loop playsinline>
+    <source src="idle.mp4" type="video/mp4">
+  </video>
+
+  <div class="hotspot startHotspot" onclick="goHome()"></div>
+
+</div>
+
 <!-- ================= HOME ================= -->
-<div id="homeScreen" class="screen active">
+<div id="homeScreen" class="screen">
   <div class="background" style="background-image:url('home.jpg')"></div>
 
   <div class="hotspot home" onclick="goHome()"></div>
@@ -20,7 +31,6 @@
 <div id="guideScreen" class="screen">
   <div class="background" style="background-image:url('guide.jpg')"></div>
 
-  <!-- LEFT -->
   <div class="hotspot clinic" onclick="showScreen('clinic1')"></div>
   <div class="hotspot chaplain" onclick="showScreen('chaplainScreen')"></div>
   <div class="hotspot admin"></div>
@@ -28,16 +38,15 @@
   <div class="hotspot dept" onclick="goDept()"></div>
   <div class="hotspot atm"></div>
 
-  <!-- RIGHT -->
   <div class="hotspot aboutSide" onclick="goAbout()"></div>
-  <div class="hotspot guideSide"></div>
+  <div class="hotspot guideSide" onclick="goGuide()"></div>
   <div class="hotspot homeSide" onclick="goHome()"></div>
 </div>
 
 <!-- ================= ABOUT ================= -->
 <div id="aboutScreen" class="screen">
   <div class="background" style="background-image:url('about.jpg')"></div>
-  <div class="back" onclick="goHome()"></div>
+  <div class="hotspot back" onclick="goHome()"></div>
 </div>
 
 <!-- ================= RESTAURANT ================= -->
@@ -50,135 +59,100 @@
 <div id="deptScreen" class="screen">
   <div class="background" style="background-image:url('department.jpg')"></div>
 
-  <!-- KEEP ALL -->
   <div class="hotspot cancer" onclick="showScreen('cancerVideo')"></div>
-  <div class="hotspot cardio"></div>
-  <div class="hotspot eye"></div>
-  <div class="hotspot hearing"></div>
-
   <div class="hotspot hemo" onclick="showScreen('hemoVideo')"></div>
-  <div class="hotspot nuclear"></div>
   <div class="hotspot rehab" onclick="showScreen('rehabVideo')"></div>
-  <div class="hotspot wound"></div>
 
   <div class="hotspot backDept" onclick="goGuide()"></div>
 </div>
 
 <!-- ================= VIDEOS ================= -->
-<div id="hemoVideo" class="screen">
-  <video class="video-bg" autoplay loop muted playsinline preload="auto">
-    <source src="hemodialysis.mp4" type="video/mp4">
-  </video>
-  <div class="hotspot backHome" onclick="goDept()"></div>
+<div id="cancerVideo" class="screen">
+  <video class="video-bg" src="cancer.mp4" autoplay muted loop></video>
+  <div class="hotspot backDept" onclick="goDept()"></div>
 </div>
 
-<div id="cancerVideo" class="screen">
-  <video class="video-bg" autoplay loop muted playsinline preload="auto">
-    <source src="cancer.mp4" type="video/mp4">
-  </video>
-  <div class="hotspot backHome" onclick="goDept()"></div>
+<div id="hemoVideo" class="screen">
+  <video class="video-bg" src="Hemodialysis.mp4" autoplay muted loop></video>
+  <div class="hotspot backDept" onclick="goDept()"></div>
 </div>
 
 <div id="rehabVideo" class="screen">
-  <video class="video-bg" autoplay loop muted playsinline preload="auto">
-    <source src="rehab.mp4" type="video/mp4">
-  </video>
-  <div class="hotspot backHome" onclick="goDept()"></div>
+  <video class="video-bg" src="rehab.mp4" autoplay muted loop></video>
+  <div class="hotspot backDept" onclick="goDept()"></div>
 </div>
 
-<!-- ================= CHAPLAIN ================= -->
+<!-- ================= CHAPLAIN SLIDER ================= -->
 <div id="chaplainScreen" class="screen">
   <div class="slider">
-    <img src="chaplain1.jpg" class="slide active">
+    <img src="chaplain1.jpg" class="slide">
     <img src="chaplain2.jpg" class="slide">
     <img src="chaplain3.jpg" class="slide">
     <img src="chaplain4.jpg" class="slide">
     <img src="chaplain5.jpg" class="slide">
     <img src="chaplain6.jpg" class="slide">
   </div>
+
+  <!-- LEFT -->
+  <div class="hotspot chaplainLeft" onclick="showSlide(currentSlide - 1)"></div>
+
+  <!-- RIGHT -->
+  <div class="hotspot chaplainRight" onclick="showSlide(currentSlide + 1)"></div>
+
   <div class="hotspot backChaplain" onclick="goGuide()"></div>
 </div>
 
-<!-- ================= HMO PAGE 1 ================= -->
+
+
+<!-- ================= HMO PAGES ================= -->
 <div id="clinic1" class="screen">
   <div class="background" style="background-image:url('hmo1.jpg')"></div>
 
-  <!-- RIGHT NAV -->
-  <div class="hotspot hmo1btn" onclick="showScreen('clinic1')"></div>
   <div class="hotspot hmo2btn" onclick="showScreen('clinic2')"></div>
   <div class="hotspot hmo3btn" onclick="showScreen('clinic3')"></div>
   <div class="hotspot hmo4btn" onclick="showScreen('clinic4')"></div>
 
-  <!-- ACTIVE -->
   <div class="hotspot amaphil" onclick="showScreen('amaphilPage')"></div>
   <div class="hotspot benlife" onclick="showScreen('benlifePage')"></div>
-
-  <!-- KEEP UNUSED -->
-  <div class="hotspot maxicare"></div>
-  <div class="hotspot intellicare"></div>
-  <div class="hotspot philcare"></div>
 
   <div class="hotspot backHome" onclick="goGuide()"></div>
 </div>
 
-<!-- ================= HMO PAGE 2 ================= -->
 <div id="clinic2" class="screen">
   <div class="background" style="background-image:url('hmo2.jpg')"></div>
 
-  <!-- RIGHT NAV -->
   <div class="hotspot hmo1btn" onclick="showScreen('clinic1')"></div>
-  <div class="hotspot hmo2btn" onclick="showScreen('clinic2')"></div>
   <div class="hotspot hmo3btn" onclick="showScreen('clinic3')"></div>
   <div class="hotspot hmo4btn" onclick="showScreen('clinic4')"></div>
 
-  <!-- ACTIVE -->
   <div class="hotspot asianlife" onclick="showScreen('asianPage')"></div>
   <div class="hotspot carehealth" onclick="showScreen('carehealthPage')"></div>
   <div class="hotspot caritas" onclick="showScreen('caritasPage')"></div>
 
-  <!-- KEEP UNUSED -->
-  <div class="hotspot cocolife"></div>
-  <div class="hotspot medicard"></div>
-  <div class="hotspot etiqa"></div>
-
   <div class="hotspot backHome" onclick="goGuide()"></div>
 </div>
 
-<!-- ================= HMO PAGE 3 ================= -->
 <div id="clinic3" class="screen">
   <div class="background" style="background-image:url('hmo3.jpg')"></div>
 
   <div class="hotspot hmo1btn" onclick="showScreen('clinic1')"></div>
   <div class="hotspot hmo2btn" onclick="showScreen('clinic2')"></div>
-  <div class="hotspot hmo3btn" onclick="showScreen('clinic3')"></div>
   <div class="hotspot hmo4btn" onclick="showScreen('clinic4')"></div>
-
-  <div class="hotspot unused1"></div>
-  <div class="hotspot unused2"></div>
 
   <div class="hotspot backHome" onclick="goGuide()"></div>
 </div>
 
-<!-- ================= HMO PAGE 4 ================= -->
 <div id="clinic4" class="screen">
   <div class="background" style="background-image:url('hmo4.jpg')"></div>
 
-  <!-- RIGHT SIDE NAV -->
   <div class="hotspot hmo1btn" onclick="showScreen('clinic1')"></div>
   <div class="hotspot hmo2btn" onclick="showScreen('clinic2')"></div>
   <div class="hotspot hmo3btn" onclick="showScreen('clinic3')"></div>
-  <div class="hotspot hmo4btn" onclick="showScreen('clinic4')"></div>
 
-  <!-- KEEP UNUSED BUTTONS -->
-  <div class="hotspot unused1"></div>
-  <div class="hotspot unused2"></div>
-  <div class="hotspot unused3"></div>
-
-  <!-- BACK -->
   <div class="hotspot backHome" onclick="goGuide()"></div>
 </div>
 
-<!-- ================= SUB PAGES ================= -->
+<!-- ================= HMO DETAIL PAGES ================= -->
 <div id="asianPage" class="screen">
   <div class="background" style="background-image:url('asianlife.jpg')"></div>
   <div class="hotspot backAsian" onclick="showScreen('clinic2')"></div>
