@@ -5,9 +5,13 @@ function showScreen(id) {
   });
 
   const target = document.getElementById(id);
-  if (target) {
-    target.classList.add('active');
+
+  if (!target) {
+    console.error("Screen not found:", id);
+    return;
   }
+
+  target.classList.add('active');
 }
 
 // ================= MAIN NAV =================
