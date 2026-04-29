@@ -188,19 +188,11 @@ html, body {
 
 /* ================= LOADER ================= */
 #loader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: black;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  font-size: 40px;
+  display: none !important;
 }
 
 .screen {
   background: red !important;
 }
+
 
