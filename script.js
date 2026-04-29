@@ -4,35 +4,25 @@ function showScreen(id) {
     screen.classList.remove('active');
   });
 
-  document.getElementById(id).classList.add('active');
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+  }
 }
 
 // ================= MAIN NAV =================
-function goHome() {
-  showScreen('homeScreen');
-}
-
-function goGuide() {
-  showScreen('guideScreen');
-}
-
-function goAbout() {
-  showScreen('aboutScreen');
-}
-
-function goResto() {
-  showScreen('restoScreen');
-}
-
-function goDept() {
-  showScreen('deptScreen');
-}
+function goHome() { showScreen('homeScreen'); }
+function goGuide() { showScreen('guideScreen'); }
+function goAbout() { showScreen('aboutScreen'); }
+function goResto() { showScreen('restoScreen'); }
+function goDept() { showScreen('deptScreen'); }
 
 // ================= CHAPLAIN SLIDER =================
 let currentSlide = 0;
 
 function showSlide(index) {
   const slides = document.querySelectorAll('.slide');
+  if (slides.length === 0) return;
 
   if (index < 0) index = slides.length - 1;
   if (index >= slides.length) index = 0;
@@ -40,10 +30,12 @@ function showSlide(index) {
   currentSlide = index;
 
   const slider = document.querySelector('.slider');
-  slider.style.transform = `translateX(-${index * 100}%)`;
+  if (slider) {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+  }
 }
 
-// ================= AUTO SCALE (FIXES SMALL SCREEN ISSUE) =================
+// ================= AUTO SCALE =================
 function scaleApp() {
   const app = document.getElementById("app");
   if (!app) return;
@@ -61,18 +53,17 @@ function scaleApp() {
 
   app.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
 }
+
 // ================= INIT =================
 window.addEventListener("load", () => {
-  scaleApp();
-});
-
-window.addEventListener("resize", scaleApp);
-
-window.addEventListener("load", () => {
+  // scale UI
   scaleApp();
 
+  // hide loader
   const loader = document.getElementById("loader");
   if (loader) {
     loader.style.display = "none";
   }
 });
+
+window.addEventListener("resize", scaleApp);
