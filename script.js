@@ -1,17 +1,22 @@
 // ================= SCREEN NAVIGATION =================
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(screen => {
-    screen.classList.remove('active');
+  const screens = document.querySelectorAll('.screen');
+  let found = false;
+
+  screens.forEach(screen => {
+    if (screen.id === id) {
+      screen.classList.add('active');
+      found = true;
+    } else {
+      screen.classList.remove('active');
+    }
   });
 
-  const target = document.getElementById(id);
-
-  if (!target) {
+  // ❗ fallback to home if screen not found
+  if (!found) {
     console.error("Screen not found:", id);
-    return;
+    document.getElementById("homeScreen")?.classList.add("active");
   }
-
-  target.classList.add('active');
 }
 
 // ================= MAIN NAV =================
@@ -26,17 +31,15 @@ let currentSlide = 0;
 
 function showSlide(index) {
   const slides = document.querySelectorAll('.slide');
-  if (slides.length === 0) return;
+  const slider = document.querySelector('.slider');
+
+  if (!slides.length || !slider) return;
 
   if (index < 0) index = slides.length - 1;
   if (index >= slides.length) index = 0;
 
   currentSlide = index;
-
-  const slider = document.querySelector('.slider');
-  if (slider) {
-    slider.style.transform = `translateX(-${index * 100}%)`;
-  }
+  slider.style.transform = `translateX(-${index * 100}%)`;
 }
 
 // ================= AUTO SCALE =================
@@ -60,13 +63,16 @@ function scaleApp() {
 
 // ================= INIT =================
 window.addEventListener("load", () => {
-  // scale UI
   scaleApp();
 
   // hide loader
   const loader = document.getElementById("loader");
-  if (loader) {
-    loader.style.display = "none";
+  if (loader) loader.style.display = "none";
+
+  // ensure at least one screen is visible
+  const active = document.querySelector('.screen.active');
+  if (!active) {
+    document.getElementById("startScreen")?.classList.add("active");
   }
 });
 
