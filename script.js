@@ -1,4 +1,52 @@
-// ================= SCREEN NAVIGATION =================
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
+  else console.error("Missing screen:", id);
+}
+
+function goHome(){ showScreen('homeScreen'); }
+function goGuide(){ showScreen('guideScreen'); }
+function goAbout(){ showScreen('aboutScreen'); }
+function goResto(){ showScreen('restoScreen'); }
+function goDept(){ showScreen('deptScreen'); }
+
+/* SLIDER */
+let currentSlide = 0;
+
+function showSlide(i){
+  const slides = document.querySelectorAll('.slide');
+  const slider = document.querySelector('.slider');
+  if(!slides.length || !slider) return;
+
+  if(i<0) i = slides.length-1;
+  if(i>=slides.length) i = 0;
+
+  currentSlide = i;
+  slider.style.transform = `translateX(-${i*100}%)`;
+}
+
+/* SCALE */
+function scaleApp(){
+  const app = document.getElementById("app");
+  if(!app) return;
+
+  const scale = Math.min(
+    window.innerWidth/3840,
+    window.innerHeight/2160
+  );
+
+  app.style.transform = `scale(${scale})`;
+}
+
+/* INIT */
+window.addEventListener("load",()=>{
+  scaleApp();
+  document.getElementById("loader").style.display="none";
+});
+
+window.addEventListener("resize",scaleApp);// ================= SCREEN NAVIGATION =================
 function showScreen(id) {
   const screens = document.querySelectorAll('.screen');
   let found = false;
