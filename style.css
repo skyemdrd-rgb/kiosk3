@@ -28,7 +28,7 @@ html, body {
   pointer-events: auto;
 }
 
-/* ================= BACKGROUND IMAGES ================= */
+/* ================= BACKGROUND ================= */
 .background {
   position: absolute;
   width: 100%;
@@ -37,24 +37,35 @@ html, body {
   background-position: center;
 }
 
-/* ================= VIDEO BACKGROUND ================= */
+/* ================= VIDEO ================= */
 .video-bg {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  pointer-events: none; /* IMPORTANT: allows clicks through video */
+  pointer-events: none;
   z-index: 0;
 }
 
-/* ================= HOTSPOTS ================= */
+/* ================= HOTSPOT (CLEAN) ================= */
 .hotspot {
   position: absolute;
   cursor: pointer;
-  z-index: 1; /* always above video */
+  z-index: 10;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* ================= START SCREEN ================= */
+.hotspot::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+}
+
+/* ================= START ================= */
 .startHotspot {
   top: 0;
   left: 0;
@@ -62,7 +73,7 @@ html, body {
   height: 100%;
 }
 
-/* ================= HOME PAGE ================= */
+/* ================= HOME ================= */
 .home {
   left: 0%;
   width: 21.67%;
@@ -84,407 +95,97 @@ html, body {
   bottom: 0;
 }
 
-/* ================= GUIDE PAGE ================= */
-.clinic {
-  top: 12%;
-  left: 6%;
-  width: 31%;
-  height: 22%;
-}
-
-.chaplain {
-  top: 12%;
-  left: 42%;
-  width: 30%;
-  height: 22%;
-}
-
-.admin {
-  top: 40%;
-  left: 6%;
-  width: 31%;
-  height: 18%;
-}
-
-.resto {
-  top: 40%;
-  left: 40.5%;
-  width: 32%;
-  height: 18%;
-}
-
-.dept {
-  top: 65.7%;
-  left: 6%;
-  width: 31.5%;
-  height: 21.2%;
-}
-
-.atm {
-  top: 65.5%;
-  left: 40.5%;
-  width: 32%;
-  height: 22%;
-}
+/* ================= GUIDE ================= */
+.clinic { top: 12%; left: 6%; width: 31%; height: 22%; }
+.chaplain { top: 12%; left: 42%; width: 30%; height: 22%; }
+.admin { top: 40%; left: 6%; width: 31%; height: 18%; }
+.resto { top: 40%; left: 40.5%; width: 32%; height: 18%; }
+.dept { top: 65.7%; left: 6%; width: 31.5%; height: 21.2%; }
+.atm { top: 65.5%; left: 40.5%; width: 32%; height: 22%; }
 
 /* RIGHT SIDE */
-.aboutSide {
-  top: 6%;
-  right: 0%;
-  width: 11.5%;
-  height: 28.33%;
-}
+.aboutSide { top: 6%; right: 0%; width: 11.5%; height: 28.33%; }
+.guideSide { top: 36%; right: 0%; width: 11.5%; height: 28.33%; }
+.homeSide { top: 65.66%; right: 0%; width: 11.5%; height: 28.33%; }
 
-.guideSide {
-  top: 36%;
-  right: 0%;
-  width: 11.5%;
-  height: 28.33%;
-}
+/* ================= BACK BUTTONS ================= */
+.back { left: 95%; top: 90%; width: 6%; height: 8%; }
+.backResto { bottom: 5%; right: 3%; width: 10%; height: 15%; }
+.backDept { bottom: 0%; right: 0%; width: 6%; height: 10%; }
+.backChaplain { bottom: 5%; right: 3%; width: 10%; height: 15%; }
+.backHome { bottom: 7%; right: 0%; width: 10.5%; height: 16%; }
 
-.homeSide {
-  top: 65.66%;
-  right: 0%;
-  width: 11.5%;
-  height: 28.33%;
-}
+/* ================= HMO NAV ================= */
+.hmo1btn { top: 26.5%; right: 0%; width: 7%; height: 11%; }
+.hmo2btn { top: 39%; right: 0%; width: 7%; height: 11%; }
+.hmo3btn { top: 51.5%; right: 0%; width: 7%; height: 11%; }
+.hmo4btn { top: 64%; right: 0%; width: 7%; height: 11%; }
 
-/* ================= ABOUT ================= */
-.back {
-  left: 95%;
-  top: 90%;
-  width: 6%;
-  height: 8%;
-  cursor: pointer;
-}
-
-/* ================= RESTAURANT ================= */
-.backResto {
-  bottom: 5%;
-  right: 3%;
-  width: 10%;
-  height: 15%;
-}
+/* ================= DEPARTMENT ================= */
+.cancer { top: 25%; left: 3%; width: 22%; height: 20%; }
+.hemo { top: 55%; left: 3%; width: 22%; height: 20%; }
+.rehab { top: 55%; left: 53%; width: 18%; height: 20%; }
 
 /* ================= HMO BUTTONS ================= */
-.hmo1btn {
-  top: 26.5%;
-  right: 0%;
-  width: 7%;
-  height: 11%;
-}
+.asianlife { top: 12%; left: 24.5%; width: 19%; height: 20%; }
+.backAsian { bottom: 2%; right: 0%; width: 10%; height: 15%; }
 
-.hmo2btn {
-  top: 39%;
-  right: 0%;
-  width: 7%;
-  height: 11%;
-}
+.amaphil { top: 12%; left: 46.5%; width: 18%; height: 20%; }
+.backAmaphil { bottom: 2.5%; right: 0%; width: 5%; height: 9%; }
 
-.hmo3btn {
-  top: 51.5%;
-  right: 0%;
-  width: 7%;
-  height: 11%;
-}
+.benlife { top: 40%; left: 5%; width: 16%; height: 20%; }
+.backBenlife { bottom: 2.5%; right: 0%; width: 5%; height: 9%; }
 
-.hmo4btn {
-  top: 64%;
-  right: 0%;
-  width: 7%;
-  height: 11%;
-}
+.carehealth { top: 67%; left: 47%; width: 18%; height: 18%; }
+.backCarehealth { bottom: 2%; right: 0%; width: 10%; height: 15%; }
 
-/* BACK HOME */
-.backHome {
-  bottom: 7%;
-  right: 0%;
-  width: 10.5%;
-  height: 16%;
-}
+.caritas { top: 66%; left: 68%; width: 17%; height: 18%; }
+.backCaritas { bottom: 2%; right: 0%; width: 10%; height: 15%; }
 
-/* DEPARTMENT BACK */
-.backDept {
-  bottom: 0%;
-  right: 0%;
-  width: 6%;
-  height: 10%;
-}
+.philcareBtn { top: 40%; left: 46%; width: 18.5%; height: 18%; }
+.backphilcare { bottom: 2.5%; right: 0%; width: 5%; height: 9%; }
 
-/* ================= DEPARTMENT HOTSPOTS ================= */
-.cancer {
-  top: 25%;
-  left: 3%;
-  width: 22%;
-  height: 20%;
-}
+.fortuneCareBtn { top: 40%; left: 25%; width: 18%; height: 20%; }
+.backFortuneCare { bottom: 2.5%; right: 0%; width: 5%; height: 9%; }
 
-.cardio {
-  top: 25%;
-  left: 26%;
-  width: 22%;
-  height: 20%;
-}
+.generaliBtn { top: 67%; left: 46.5%; width: 18%; height: 20%; }
+.backGenerali { bottom: 2.5%; right: 0%; width: 5%; height: 9%; }
 
-.eye {
-  top: 25%;
-  left: 49%;
-  width: 22%;
-  height: 20%;
-}
+.hppiBtn { top: 12%; left: 68%; width: 18%; height: 20%; }
+.backHPPI { bottom: 2.5%; right: 0%; width: 5%; height: 9%; }
 
-.hearing {
-  top: 25%;
-  left: 72%;
-  width: 22%;
-  height: 20%;
-}
+.imswelthcareincBtn { top: 39%; left: 68%; width: 18%; height: 22%; }
+.backImswelthcareinc { bottom: 2.5%; right: 0%; width: 5%; height: 9%; }
 
-.hemo {
-  top: 55%;
-  left: 3%;
-  width: 22%;
-  height: 20%;
-}
+.coopHealthBtn { top: 13%; left: 25%; width: 18%; height: 20%; }
 
-.nuclear {
-  top: 55%;
-  left: 28%;
-  width: 20%;
-  height: 20%;
-}
-
-.rehab {
-  top: 55%;
-  left: 53%;
-  width: 18%;
-  height: 20%;
-}
-
-.wound {
-  top: 55%;
-  left: 74%;
-  width: 22%;
-  height: 20%;
-}
-
-/* ================= HMO SPECIFIC ================= */
-.asianlife {
-  top: 12%;
-  left: 24.5%;
-  width: 19%;
-  height: 20%;
-}
-
-.backAsian {
-  bottom: 2%;
-  right: 0%;
-  width: 10%;
-  height: 15%;
-}
-
-.amaphil {
-  top: 12%;
-  left: 46.5%;
-  width: 18%;
-  height: 20%;
-}
-
-.backAmaphil {
-  position: absolute;
-  bottom: 2.5%;
-  right: 0%;
-  width: 5%;
-  height: 9%;
-}
-
-.benlife {
-  top: 40%;
-  left: 5%;
-  width: 16%;
-  height: 20%;
-}
-
-.backBenlife {
-  position: absolute;
-  bottom: 2.5%;
-  right: 0%;
-  width: 5%;
-  height: 9%;
-}
-
-.carehealth {
-  top: 67%;
-  left: 47%;
-  width: 18%;
-  height: 18%;
-}
-
-.backCarehealth {
-  bottom: 2%;
-  right: 0%;
-  width: 10%;
-  height: 15%;
-}
-
-.caritas {
-  top: 66%;
-  left: 68%;
-  width: 17%;
-  height: 18%;
-}
-
-.backCaritas {
-  bottom: 2%;
-  right: 0%;
-  width: 10%;
-  height: 15%;
-}
-
-.philcareBtn {
-  position: absolute;
-  top: 40%;
-  left: 46%;
-  width: 18.5%;
-  height: 18%;
-}
-
-.backphilcare {
-  position: absolute;
-  bottom: 2.5%;
-  right: 0%;
-  width: 5%;
-  height: 9%;
-}
-
-.fortuneCareBtn {
-  position: absolute;
-  top: 40%;   /* adjust based on your layout */
-  left: 25%;  /* adjust */
-  width: 18%;
-  height: 20%;
-}
-
-.backFortuneCare {
-  position: absolute;
-  bottom: 2.5%;
-  right: 0%;
-  width: 5%;
-  height: 9%;
-}
-
-.generaliBtn {
-  position: absolute;
-  top: 67%;   /* adjust based on your layout */
-  left: 46.5%;
-  width: 18%;
-  height: 20%;
-}
-
-.backGenerali {
-  position: absolute;
-  bottom: 2.5%;
-  right: 0%;
-  width: 5%;
-  height: 9%;
-}
-
-.hppiBtn {
-   position: absolute;
-  top: 12%;     /* same row as HPPI */
-  left: 68%;    /* far right column */
-  width: 18%;
-  height: 20%;
-}
-
-.backHPPI {
-  position: absolute;
-  bottom: 2.5%;
-  right: 0%;
-  width: 5%;
-  height: 9%;
-}
-
-.imswelthcareincBtn {
-  position: absolute;
-  top: 39%;     /* aligns with 2nd row */
-  left: 68%;    /* aligns with rightmost tile BEFORE sidebar */
-  width: 18%;   /* slightly wider to match tile */
-  height: 22%;
-}
-
-.backImswelthcareinc {
-   position: absolute;
-  bottom: 2.5%;
-  right: 0%;
-  width: 5%;
-  height: 9%;
-}
-
-/* ================= TRUE FULL SLIDE ================= */
+/* ================= SLIDER ================= */
 .slider {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;        /* IMPORTANT: no 600% */
+  width: 100%;
   height: 100%;
   display: flex;
   transition: transform 0.4s ease;
 }
 
 .slide {
-  width: 100%;        /* each slide = full screen */
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  flex-shrink: 0;     /* prevents shrinking */
+  flex-shrink: 0;
 }
 
-/* CHAPLAIN BACK BUTTON */
-.backChaplain {
-  bottom: 5%;
-  right: 3%;
-  width: 10%;
-  height: 15%;
-}
-
-/* 
-.hotspot {
-  background: rgba(255, 0, 0, 0.3);
-  border: 2px solid red;
-}
-*/
-
-
-/* LEFT BUTTON */
-.chaplainLeft {
-  top: 0;
-  left: 0;
-  width: 15%;
-  height: 100%;
-}
-
-/* RIGHT BUTTON */
-.chaplainRight {
-  top: 0;
-  right: 0;
-  width: 15%;
-  height: 100%;
-}
-
-/* ================= 4K FIXED CANVAS ================= */
+/* ================= CANVAS ================= */
 #app {
   width: 3840px;
   height: 2160px;
   position: absolute;
-  top: 0;
-  left: 0;
   transform-origin: top left;
 }
 
+/* ================= LOADER ================= */
 #loader {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background: black;
@@ -494,31 +195,4 @@ html, body {
   align-items: center;
   z-index: 9999;
   font-size: 40px;
-}
-
-.hotspot {
-  position: absolute;
-  cursor: pointer;
-  z-index: 10;
-
-  /* 🔥 TOUCH IMPROVEMENTS */
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.hotspot::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-}
-
-.coopHealthBtn {
-  position: absolute;
-  top: 13%;   /* adjust based on your layout */
-  left: 25%;  /* adjust */
-  width: 18%;
-  height: 20%;
 }
