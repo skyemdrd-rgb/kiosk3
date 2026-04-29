@@ -41,24 +41,24 @@ function scaleApp(){
 }
 
 /* INIT */
-window.addEventListener("load",()=>{
+window.addEventListener("load", () => {
+
+  // 🔥 FORCE SHOW START SCREEN
+  const start = document.getElementById("startScreen");
+  if (start) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    start.classList.add('active');
+  }
+
+  // 🔥 HIDE LOADER
+  const loader = document.getElementById("loader");
+  if (loader) {
+    loader.style.display = "none";
+  }
+
+  // SCALE LAST
   scaleApp();
-  document.getElementById("loader").style.display="none";
 });
-
-window.addEventListener("resize",scaleApp);// ================= SCREEN NAVIGATION =================
-function showScreen(id) {
-  const screens = document.querySelectorAll('.screen');
-  let found = false;
-
-  screens.forEach(screen => {
-    if (screen.id === id) {
-      screen.classList.add('active');
-      found = true;
-    } else {
-      screen.classList.remove('active');
-    }
-  });
 
   // ❗ fallback to home if screen not found
   if (!found) {
