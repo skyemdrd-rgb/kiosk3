@@ -448,8 +448,8 @@ html, body {
 }
 
 /* ================= DEBUG: SHOW HOTSPOTS ================= */
-.hotspot {
-  background: rgba(255, 0, 0, 0.3); /* red transparent */
+/* .hotspot {
+  background: rgba(255, 0, 0, 0.3); 
   border: 2px solid red;
 }
 
