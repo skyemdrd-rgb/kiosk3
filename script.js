@@ -47,6 +47,8 @@ function showSlide(index) {
 function scaleApp() {
   const app = document.getElementById("app");
 
+  if (!app) return;
+
   const baseWidth = 3840;
   const baseHeight = 2160;
 
@@ -54,6 +56,9 @@ function scaleApp() {
   const scaleY = window.innerHeight / baseHeight;
 
   const scale = Math.min(scaleX, scaleY);
+
+  // prevent scale from going too small
+  if (scale <= 0) return;
 
   app.style.transform = `scale(${scale})`;
 }
