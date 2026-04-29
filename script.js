@@ -1,4 +1,3 @@
-alert("NEW JS RUNNING");
 
 // ================= SCREEN NAVIGATION =================
 function showScreen(id) {
@@ -53,16 +52,18 @@ function scaleApp() {
 // ================= INIT =================
 window.addEventListener("load", function () {
 
-  // force start screen
+  // 🔥 FORCE HIDE LOADER
+  const loader = document.getElementById("loader");
+  if (loader) {
+    loader.style.display = "none";
+  }
+
+  // 🔥 FORCE SHOW START SCREEN
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const start = document.getElementById("startScreen");
   if (start) start.classList.add("active");
 
-  // hide loader
-  const loader = document.getElementById("loader");
-  if (loader) loader.style.display = "none";
-
-  // scale app
+  // SCALE LAST
   scaleApp();
 });
 
