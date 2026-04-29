@@ -58,3 +58,17 @@ window.addEventListener('load', () => {
     showScreen(lastScreen);
   }
 });
+
+function scaleApp() {
+  const app = document.getElementById("app");
+
+  const scaleX = window.innerWidth / 3840;
+  const scaleY = window.innerHeight / 2160;
+
+  const scale = Math.min(scaleX, scaleY);
+
+  app.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener("load", scaleApp);
+window.addEventListener("resize", scaleApp);
