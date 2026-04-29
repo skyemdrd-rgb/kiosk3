@@ -43,7 +43,7 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  pointer-events: none; /* IMPORTANT: allows clicks through video */
+  pointer-events: none;
   z-index: 0;
 }
 
@@ -51,7 +51,7 @@ html, body {
 .hotspot {
   position: absolute;
   cursor: pointer;
-  z-index: 1; /* always above video */
+  z-index: 1;
 }
 
 /* ================= START SCREEN ================= */
@@ -291,7 +291,7 @@ html, body {
 }
 
 .backAmaphil {
-    position: absolute;
+  position: absolute;
   bottom: 2.5%;
   right: 0%;
   width: 5%;
@@ -359,8 +359,8 @@ html, body {
 
 .fortuneCareBtn {
   position: absolute;
-  top: 40%;   /* adjust based on your layout */
-  left: 25%;  /* adjust */
+  top: 40%;
+  left: 25%;
   width: 18%;
   height: 20%;
 }
@@ -375,7 +375,7 @@ html, body {
 
 .generaliBtn {
   position: absolute;
-  top: 67%;   /* adjust based on your layout */
+  top: 67%;
   left: 46.5%;
   width: 18%;
   height: 20%;
@@ -390,9 +390,9 @@ html, body {
 }
 
 .hppiBtn {
-   position: absolute;
-  top: 12%;     /* same row as HPPI */
-  left: 68%;    /* far right column */
+  position: absolute;
+  top: 12%;
+  left: 68%;
   width: 18%;
   height: 20%;
 }
@@ -407,14 +407,14 @@ html, body {
 
 .imswelthcareincBtn {
   position: absolute;
-  top: 39%;     /* aligns with 2nd row */
-  left: 68%;    /* aligns with rightmost tile BEFORE sidebar */
-  width: 18%;   /* slightly wider to match tile */
+  top: 39%;
+  left: 68%;
+  width: 18%;
   height: 22%;
 }
 
 .backImswelthcareinc {
-   position: absolute;
+  position: absolute;
   bottom: 2.5%;
   right: 0%;
   width: 5%;
@@ -426,17 +426,17 @@ html, body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;        /* IMPORTANT: no 600% */
+  width: 100%;
   height: 100%;
   display: flex;
   transition: transform 0.4s ease;
 }
 
 .slide {
-  width: 100%;        /* each slide = full screen */
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  flex-shrink: 0;     /* prevents shrinking */
+  flex-shrink: 0;
 }
 
 /* CHAPLAIN BACK BUTTON */
@@ -446,12 +446,6 @@ html, body {
   width: 10%;
   height: 15%;
 }
-
-/* ================= DEBUG: SHOW HOTSPOTS ================= */
-/* .hotspot {
-  background: rgba(255, 0, 0, 0.3); 
-  border: 2px solid red;
-} */
 
 /* LEFT BUTTON */
 .chaplainLeft {
@@ -498,8 +492,6 @@ html, body {
   position: absolute;
   cursor: pointer;
   z-index: 10;
-
-  /* 🔥 TOUCH IMPROVEMENTS */
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
@@ -515,8 +507,8 @@ html, body {
 
 .coopHealthBtn {
   position: absolute;
-  top: 13%;   /* adjust based on your layout */
-  left: 25%;  /* adjust */
+  top: 13%;
+  left: 25%;
   width: 18%;
   height: 20%;
 }
