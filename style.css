@@ -447,11 +447,6 @@ html, body {
   height: 15%;
 }
 
-/* ================= DEBUG: SHOW HOTSPOTS ================= */
-.hotspot {
-  background: rgba(255, 0, 0, 0.3); /* red transparent */
-  border: 2px solid red;
-}
 
 /* LEFT BUTTON */
 .chaplainLeft {
