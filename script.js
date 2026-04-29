@@ -67,3 +67,12 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("resize", scaleApp);
+
+window.addEventListener("load", () => {
+  scaleApp();
+
+  const loader = document.getElementById("loader");
+  if (loader) {
+    loader.style.display = "none";
+  }
+});
