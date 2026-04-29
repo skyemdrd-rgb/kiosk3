@@ -1,71 +1,14 @@
-alert("JS LOADED");
-
+// ================= SCREEN NAVIGATION =================
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
 
   const target = document.getElementById(id);
-  if (target) target.classList.add('active');
-  else console.error("Missing screen:", id);
-}
-
-function goHome(){ showScreen('homeScreen'); }
-function goGuide(){ showScreen('guideScreen'); }
-function goAbout(){ showScreen('aboutScreen'); }
-function goResto(){ showScreen('restoScreen'); }
-function goDept(){ showScreen('deptScreen'); }
-
-/* SLIDER */
-let currentSlide = 0;
-
-function showSlide(i){
-  const slides = document.querySelectorAll('.slide');
-  const slider = document.querySelector('.slider');
-  if(!slides.length || !slider) return;
-
-  if(i<0) i = slides.length-1;
-  if(i>=slides.length) i = 0;
-
-  currentSlide = i;
-  slider.style.transform = `translateX(-${i*100}%)`;
-}
-
-/* SCALE */
-function scaleApp(){
-  const app = document.getElementById("app");
-  if(!app) return;
-
-  const scale = Math.min(
-    window.innerWidth/3840,
-    window.innerHeight/2160
-  );
-
-  app.style.transform = `scale(${scale})`;
-}
-
-/* INIT */
-window.addEventListener("load", () => {
-
-  // 🔥 FORCE SHOW START SCREEN
-  const start = document.getElementById("startScreen");
-  if (start) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    start.classList.add('active');
-  }
-
-  // 🔥 HIDE LOADER
-  const loader = document.getElementById("loader");
-  if (loader) {
-    loader.style.display = "none";
-  }
-
-  // SCALE LAST
-  scaleApp();
-});
-
-  // ❗ fallback to home if screen not found
-  if (!found) {
-    console.error("Screen not found:", id);
-    document.getElementById("homeScreen")?.classList.add("active");
+  if (target) {
+    target.classList.add('active');
+  } else {
+    console.error("Missing screen:", id);
   }
 }
 
@@ -76,7 +19,7 @@ function goAbout() { showScreen('aboutScreen'); }
 function goResto() { showScreen('restoScreen'); }
 function goDept() { showScreen('deptScreen'); }
 
-// ================= CHAPLAIN SLIDER =================
+// ================= SLIDER =================
 let currentSlide = 0;
 
 function showSlide(index) {
@@ -92,38 +35,33 @@ function showSlide(index) {
   slider.style.transform = `translateX(-${index * 100}%)`;
 }
 
-// ================= AUTO SCALE =================
+// ================= SCALE =================
 function scaleApp() {
   const app = document.getElementById("app");
   if (!app) return;
 
-  const baseWidth = 3840;
-  const baseHeight = 2160;
+  const scale = Math.min(
+    window.innerWidth / 3840,
+    window.innerHeight / 2160
+  );
 
-  const scaleX = window.innerWidth / baseWidth;
-  const scaleY = window.innerHeight / baseHeight;
-
-  const scale = Math.min(scaleX, scaleY);
-
-  const offsetX = (window.innerWidth - baseWidth * scale) / 2;
-  const offsetY = (window.innerHeight - baseHeight * scale) / 2;
-
-  app.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+  app.style.transform = `scale(${scale})`;
 }
 
 // ================= INIT =================
-window.addEventListener("load", () => {
-  scaleApp();
+window.addEventListener("load", function () {
+
+  // force start screen
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const start = document.getElementById("startScreen");
+  if (start) start.classList.add("active");
 
   // hide loader
   const loader = document.getElementById("loader");
   if (loader) loader.style.display = "none";
 
-  // ensure at least one screen is visible
-  const active = document.querySelector('.screen.active');
-  if (!active) {
-    document.getElementById("startScreen")?.classList.add("active");
-  }
+  // scale app
+  scaleApp();
 });
 
 window.addEventListener("resize", scaleApp);
