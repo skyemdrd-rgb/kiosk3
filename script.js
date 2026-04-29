@@ -1,3 +1,5 @@
+alert("NEW JS RUNNING");
+
 // ================= SCREEN NAVIGATION =================
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(screen => {
