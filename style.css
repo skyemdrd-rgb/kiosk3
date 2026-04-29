@@ -187,12 +187,5 @@ html, body {
 }
 
 /* ================= LOADER ================= */
-#loader {
-  display: none !important;
-}
-
-.screen {
-  background: red !important;
-}
 
 
