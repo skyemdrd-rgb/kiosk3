@@ -7,15 +7,18 @@
 </head>
 <body>
 
+<div id="loader">
+  <div id="loadingText">Loading...</div>
+</div>
+
+<div id="app">
+
 <!-- ================= START SCREEN (VIDEO) ================= -->
 <div id="startScreen" class="screen active">
-
   <video class="video-bg" autoplay muted loop playsinline>
     <source src="idle.mp4" type="video/mp4">
   </video>
-
   <div class="hotspot startHotspot" onclick="goHome()"></div>
-
 </div>
 
 <!-- ================= HOME ================= -->
@@ -73,7 +76,7 @@
 </div>
 
 <div id="hemoVideo" class="screen">
-  <video class="video-bg" src="Hemodialysis.mp4" autoplay muted loop></video>
+  <video class="video-bg" src="hemodialysis.mp4" autoplay muted loop></video>
   <div class="hotspot backDept" onclick="goDept()"></div>
 </div>
 
@@ -93,20 +96,15 @@
     <img src="chaplain6.jpg" class="slide">
   </div>
 
-  <!-- LEFT -->
   <div class="hotspot chaplainLeft" onclick="showSlide(currentSlide - 1)"></div>
-
-  <!-- RIGHT -->
   <div class="hotspot chaplainRight" onclick="showSlide(currentSlide + 1)"></div>
-
   <div class="hotspot backChaplain" onclick="goGuide()"></div>
 </div>
 
-
-
 <!-- ================= HMO PAGES ================= -->
 <div id="clinic1" class="screen">
-  <div class="background" style="background-image:url('hmo1.jpg')"></div>
+  <!-- ✅ FIXED PATH -->
+  <div class="background" style="background-image:url('hmo/hmo1.jpg')"></div>
 
   <div class="hotspot hmo2btn" onclick="showScreen('clinic2')"></div>
   <div class="hotspot hmo3btn" onclick="showScreen('clinic3')"></div>
@@ -114,26 +112,31 @@
 
   <div class="hotspot amaphil" onclick="showScreen('amaphilPage')"></div>
   <div class="hotspot benlife" onclick="showScreen('benlifePage')"></div>
+  <div class="hotspot philcareBtn" onclick="showScreen('philcarePage')"></div>
+  <div class="hotspot asianlife" onclick="showScreen('asianPage')"></div>
+  <div class="hotspot caritas" onclick="showScreen('caritasPage')"></div>
+  <div class="hotspot generaliBtn" onclick="showScreen('generaliPage')"></div>
+  <div class="hotspot hppiBtn" onclick="showScreen('hppiPage')"></div>
+  <div class="hotspot imswelthcareincBtn" onclick="showScreen('imswelthcareincPage')"></div>
 
   <div class="hotspot backHome" onclick="goGuide()"></div>
 </div>
 
 <div id="clinic2" class="screen">
-  <div class="background" style="background-image:url('hmo2.jpg')"></div>
+  <!-- ✅ FIXED PATH -->
+  <div class="background" style="background-image:url('hmo/hmo2.jpg')"></div>
 
   <div class="hotspot hmo1btn" onclick="showScreen('clinic1')"></div>
   <div class="hotspot hmo3btn" onclick="showScreen('clinic3')"></div>
   <div class="hotspot hmo4btn" onclick="showScreen('clinic4')"></div>
-
-  <div class="hotspot asianlife" onclick="showScreen('asianPage')"></div>
-  <div class="hotspot carehealth" onclick="showScreen('carehealthPage')"></div>
-  <div class="hotspot caritas" onclick="showScreen('caritasPage')"></div>
+  
 
   <div class="hotspot backHome" onclick="goGuide()"></div>
 </div>
 
 <div id="clinic3" class="screen">
-  <div class="background" style="background-image:url('hmo3.jpg')"></div>
+  <!-- ✅ FIXED PATH -->
+  <div class="background" style="background-image:url('hmo/hmo3.jpg')"></div>
 
   <div class="hotspot hmo1btn" onclick="showScreen('clinic1')"></div>
   <div class="hotspot hmo2btn" onclick="showScreen('clinic2')"></div>
@@ -143,7 +146,8 @@
 </div>
 
 <div id="clinic4" class="screen">
-  <div class="background" style="background-image:url('hmo4.jpg')"></div>
+  <!-- ✅ FIXED PATH -->
+  <div class="background" style="background-image:url('hmo/hmo4.jpg')"></div>
 
   <div class="hotspot hmo1btn" onclick="showScreen('clinic1')"></div>
   <div class="hotspot hmo2btn" onclick="showScreen('clinic2')"></div>
@@ -154,28 +158,51 @@
 
 <!-- ================= HMO DETAIL PAGES ================= -->
 <div id="asianPage" class="screen">
-  <div class="background" style="background-image:url('asianlife.jpg')"></div>
-  <div class="hotspot backAsian" onclick="showScreen('clinic2')"></div>
+  <div class="background" style="background-image:url('hmo/asianlife.png')"></div>
+  <div class="hotspot backAsian" onclick="showScreen('clinic1')"></div>
 </div>
 
 <div id="amaphilPage" class="screen">
-  <div class="background" style="background-image:url('amaphil.jpg')"></div>
+  <div class="background" style="background-image:url('hmo/amaphil.png')"></div>
   <div class="hotspot backAmaphil" onclick="showScreen('clinic1')"></div>
 </div>
 
 <div id="benlifePage" class="screen">
-  <div class="background" style="background-image:url('benlife.jpg')"></div>
+  <div class="background" style="background-image:url('hmo/benlife.png')"></div>
   <div class="hotspot backBenlife" onclick="showScreen('clinic1')"></div>
 </div>
 
-<div id="carehealthPage" class="screen">
-  <div class="background" style="background-image:url('carehealth.jpg')"></div>
-  <div class="hotspot backCarehealth" onclick="showScreen('clinic2')"></div>
+<div id="caritasPage" class="screen">
+  <div class="background" style="background-image:url('hmo/caritas.png')"></div>
+  <div class="hotspot backCaritas" onclick="showScreen('clinic1')"></div>
 </div>
 
-<div id="caritasPage" class="screen">
-  <div class="background" style="background-image:url('caritas.jpg')"></div>
-  <div class="hotspot backCaritas" onclick="showScreen('clinic2')"></div>
+<div id="philcarePage" class="screen">
+  <div class="background" style="background-image:url('hmo/philcare.png')"></div>
+
+  <!-- ✅ FIXED CLASS -->
+  <div class="hotspot backphilcare" onclick="showScreen('clinic1')"></div>
+</div>
+
+</div>
+<div id="generaliPage" class="screen">
+  <div class="background" style="background-image:url('hmo/generali.png')"></div>
+
+  <div class="hotspot backGenerali" onclick="showScreen('clinic1')"></div>
+</div>
+
+<div id="hppiPage" class="screen">
+  <div class="background" style="background-image:url('hmo/hppi.png')"></div>
+
+  <div class="hotspot backHPPI" onclick="showScreen('clinic1')"></div>
+</div>
+
+<div id="imswelthcareincPage" class="screen">
+  <div class="background" style="background-image:url('hmo/imswelthcareinc.png')"></div>
+
+  <div class="hotspot backImswelthcareinc" onclick="showScreen('clinic1')"></div>
+</div>
+
 </div>
 
 <script src="script.js"></script>

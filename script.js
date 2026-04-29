@@ -1,83 +1,60 @@
-function showScreen(id) {
-  document.querySelectorAll(".screen").forEach(s => {
-    s.classList.remove("active");
-
-    // pause videos
-    const v = s.querySelector("video");
-    if (v) v.pause();
-  });
-
-  const target = document.getElementById(id);
-  if (!target) return;
-
-  target.classList.add("active");
-
-  // play video if exists
-  const vid = target.querySelector("video");
-  if (vid) {
-    vid.currentTime = 0;
-    vid.play().catch(() => {});
-  }
-
-  resetIdle();
-}
-
-/* NAV */
-const goHome = () => showScreen("homeScreen");
-const goGuide = () => showScreen("guideScreen");
-const goAbout = () => showScreen("aboutScreen");
-const goResto = () => showScreen("restoScreen");
-const goDept = () => showScreen("deptScreen");
-
-/* START ALWAYS */
-window.onload = () => {
-  showScreen("startScreen");
-};
-
-/* IDLE RESET */
-let idleTimer;
-
-function resetIdle() {
-  clearTimeout(idleTimer);
-
-  idleTimer = setTimeout(() => {
-    showScreen("startScreen");
-  }, 30000);
-}
-
-document.addEventListener("click", resetIdle);
-document.addEventListener("touchstart", resetIdle);
-
-/* SLIDER */
+let isTransitioning = false;
 let currentSlide = 0;
 
-function showSlide(index) {
-  const slider = document.querySelector("#chaplainScreen .slider");
-  const slides = document.querySelectorAll("#chaplainScreen .slide");
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
 
+  document.getElementById(id).classList.add('active');
+
+  // ✅ SAVE LAST SCREEN
+  localStorage.setItem('lastScreen', id);
+}
+// NAVIGATION
+function goHome() { showScreen('homeScreen'); }
+function goGuide() { showScreen('guideScreen'); }
+function goAbout() { showScreen('aboutScreen'); }
+function goDept() { showScreen('deptScreen'); }
+function goResto() { showScreen('restoScreen'); }
+
+// CHAPLAIN SLIDER
+function showSlide(index) {
+  const slides = document.querySelectorAll('.slide');
   const total = slides.length;
 
-  // loop properly
-  currentSlide = (index + total) % total;
+  if (index < 0) index = total - 1;
+  if (index >= total) index = 0;
 
-  // move EXACTLY 100% per slide
-  slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+  currentSlide = index;
+
+  const slider = document.querySelector('.slider');
+  slider.style.transform = `translateX(-${index * 100}%)`;
 }
 
-/* SWIPE ONLY ON SLIDER */
-const slider = document.querySelector(".slider");
+// LOADER + SCALE FIX
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+  loader.style.display = "none";
 
-if (slider) {
-  let startX = 0;
+  scaleApp();
+});
 
-  slider.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-  });
+function scaleApp() {
+  const app = document.getElementById("app");
+  const scaleX = window.innerWidth / 3840;
+  const scaleY = window.innerHeight / 2160;
+  const scale = Math.min(scaleX, scaleY);
 
-  slider.addEventListener("touchend", e => {
-    let endX = e.changedTouches[0].clientX;
-
-    if (endX - startX > 50) showSlide(currentSlide - 1);
-    if (startX - endX > 50) showSlide(currentSlide + 1);
-  });
+  app.style.transform = `scale(${scale})`;
 }
+
+window.addEventListener("resize", scaleApp);
+
+window.addEventListener('load', () => {
+  const lastScreen = localStorage.getItem('lastScreen');
+
+  if (lastScreen) {
+    showScreen(lastScreen);
+  }
+});
