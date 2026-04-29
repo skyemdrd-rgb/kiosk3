@@ -1,4 +1,3 @@
-
 // ================= SCREEN NAVIGATION =================
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(screen => {
@@ -21,7 +20,9 @@ function goResto() { showScreen('restoScreen'); }
 function goDept() { showScreen('deptScreen'); }
 
 // ================= SLIDER =================
-let currentSlide = 0;
+if (typeof currentSlide === "undefined") {
+  var currentSlide = 0; // 🔥 prevents redeclaration error
+}
 
 function showSlide(index) {
   const slides = document.querySelectorAll('.slide');
@@ -52,18 +53,16 @@ function scaleApp() {
 // ================= INIT =================
 window.addEventListener("load", function () {
 
-  // 🔥 FORCE HIDE LOADER
+  // hide loader safely
   const loader = document.getElementById("loader");
-  if (loader) {
-    loader.style.display = "none";
-  }
+  if (loader) loader.style.display = "none";
 
-  // 🔥 FORCE SHOW START SCREEN
+  // show start screen
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const start = document.getElementById("startScreen");
   if (start) start.classList.add("active");
 
-  // SCALE LAST
+  // scale
   scaleApp();
 });
 
