@@ -129,7 +129,11 @@ html, body {
 
 /* ================= HMO BUTTONS ================= */
 .asianlife { top: 12%; left: 24.5%; width: 19%; height: 20%; }
-.backAsian { bottom: 2%; right: 0%; width: 10%; height: 15%; }
+.backAsian {   bottom: 2%;
+  right: 0%;
+  width: 10%;
+  height: 15%;
+}
 
 .amaphil { top: 12%; left: 46.5%; width: 18%; height: 20%; }
 .backAmaphil { bottom: 2.5%; right: 0%; width: 5%; height: 9%; }
