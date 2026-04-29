@@ -1,3 +1,5 @@
+alert("JS LOADED");
+
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
 
